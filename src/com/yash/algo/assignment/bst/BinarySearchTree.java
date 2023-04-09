@@ -2,18 +2,18 @@ package com.yash.algo.assignment.bst;
 
 import com.yash.algo.assignment.ElementNotFoundException;
 
-public class BinarySearchTree {
-    static class Node {
-        int data;
-        Node left;
-        Node right;
-        Node parent;
+public class BinarySearchTree<T extends Comparable<T>> {
+    static class Node<T extends Comparable<T>> {
+        T data;
+        Node<T> left;
+        Node<T> right;
+        Node<T> parent;
         Node() {
             left = null;
             right = null;
             parent = null;
         }
-        Node(int key) {
+        Node(T key) {
             data = key;
             left = null;
             right = null;
@@ -21,7 +21,7 @@ public class BinarySearchTree {
         }
     }
 
-    private Node root;
+    private Node<T> root;
 
     public BinarySearchTree() {
         root = null;
@@ -32,7 +32,7 @@ public class BinarySearchTree {
         System.out.println();
     }
 
-    private void inorder(Node node) {
+    private void inorder(Node<T> node) {
         if(node == null) {
             return;
         }
@@ -41,21 +41,21 @@ public class BinarySearchTree {
         inorder(node.right);
     }
 
-    public void insert(int key) {
+    public void insert(T key) {
         if(search(root, key) == null) {
             root = insertRec(root, key);
         }
     }
 
-    private void insert(Node node, int key) {
+    private void insert(Node<T> node, T key) {
         if(root == null) {
-            root = new Node(key);
+            root = new Node<>(key);
             return;
         }
-        Node p = root;
-        Node q = root;
+        Node<T> p = root;
+        Node<T> q = root;
         while(p!=null) {
-            if(p.data > key) {
+            if(p.data.compareTo(key) > 0) {
                 q = p;
                 p = p.left;
             } else {
@@ -63,45 +63,45 @@ public class BinarySearchTree {
                 p = p.right;
             }
         }
-        p = new Node(key);
+        p = new Node<>(key);
         p.parent = q;
-        if(q.data > key) {
+        if(q.data.compareTo(key) > 0) {
             q.left = p;
         } else {
             q.right = p;
         }
     }
 
-    private Node insertRec(Node node, int key) {
+    private Node<T> insertRec(Node<T> node, T key) {
         if(node == null) {
-            return new Node(key);
+            return new Node<>(key);
         }
-        if(node.data > key) {
-            Node temp = insertRec(node.left, key);
+        if(node.data.compareTo(key) > 0) {
+            Node<T> temp = insertRec(node.left, key);
             temp.parent = node;
             node.left = temp;
         } else {
-            Node temp = insertRec(node.right, key);
+            Node<T> temp = insertRec(node.right, key);
             temp.parent = node;
             node.right = temp;
         }
         return node;
     }
 
-    private Node search(Node node, int key) {
+    private Node<T> search(Node<T> node, T key) {
         if (node == null) {
             return null;
         }
-        if (node.data == key) {
+        if (node.data.equals(key)) {
             return node;
         }
-        if (node.data > key) {
+        if (node.data.compareTo(key) > 0) {
             return search(node.left, key);
         }
         return search(node.right, key);
     }
 
-    private void transplant(Node a, Node b) {
+    private void transplant(Node<T> a, Node<T> b) {
         if (a.parent == null) {
             root = b;
         } else if(a == a.parent.left) {
@@ -114,8 +114,8 @@ public class BinarySearchTree {
         }
     }
 
-    public void delete(int key) throws ElementNotFoundException {
-        Node p = search(root, key);
+    public void delete(T key) throws ElementNotFoundException {
+        Node<T> p = search(root, key);
         if (p == null) {
             throw new ElementNotFoundException();
         }
@@ -124,7 +124,7 @@ public class BinarySearchTree {
         } else if(p.right == null) {
             transplant(p, p.left);
         } else {
-            Node q = treeMinimum(p.right);
+            Node<T> q = treeMinimum(p.right);
             if (q != p.right) {
                 transplant(q, q.right);
                 q.right = p.right;
@@ -136,7 +136,7 @@ public class BinarySearchTree {
         }
     }
 
-    private Node treeMinimum(Node node) {
+    private Node<T> treeMinimum(Node<T> node) {
         if(node == null) {
             return null;
         }
