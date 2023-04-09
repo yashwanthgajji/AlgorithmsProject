@@ -4,33 +4,61 @@ import com.yash.algo.assignment.bst.BinarySearchTree;
 import com.yash.algo.assignment.rbtree.RedBlackTree;
 import com.yash.algo.assignment.skiplist.SkipList;
 import com.yash.algo.assignment.splaytree.SplayTree;
+import com.yash.algo.assignment.temp.Car;
 
 public class Main {
 
     public static void main(String[] args) {
-        SplayTree bst = new SplayTree();
-        bst.insert(6);
-        bst.inorder();
-        bst.insert(3);
-        bst.inorder();
-        bst.insert(5);
-        bst.inorder();
-        bst.insert(4);
-        bst.inorder();
-        bst.insert(1);
-        bst.inorder();
-        bst.insert(8);
-        bst.inorder();
-        bst.insert(7);
-        bst.inorder();
+
+//        Car<Integer> car1 = new Car<Integer>("Camry", 293393934, 102929383, 8938822, 2345686);
+//        System.out.println(car1.toString());
+//        Car<Double> car2 = new Car<Double>("Camry", 293393934, 102929383.0000, 8938822.256, 8938822.650);
+//        System.out.println(car2.toString());
+//        Car<String> car3 = new Car<String>("Camry", 293393934, "102929383", "8938822", "2345686");
+//        System.out.println(car3.toString());
+
+//        BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+//        bst.insert(6);
+//        bst.inorder();
+//        bst.insert(3);
+//        bst.inorder();
+//        bst.insert(5);
+//        bst.inorder();
+//        bst.insert(4);
+//        bst.inorder();
+//        bst.insert(1);
+//        bst.inorder();
+//        bst.insert(8);
+//        bst.inorder();
+//        bst.insert(7);
+//        bst.inorder();
+//        try {
+//            bst.delete(6);
+//        } catch (ElementNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        bst.inorder();
+//        try {
+//            bst.delete(9);
+//        } catch (ElementNotFoundException e) {
+//            System.out.println(e);
+//        }
+
+        BinarySearchTree<String> bstString = new BinarySearchTree<>();
+        bstString.insert("Hello");
+        bstString.inorder();
+        bstString.insert("World");
+        bstString.inorder();
+        bstString.insert("World");
+        bstString.inorder();
         try {
-            bst.delete(6);
+            bstString.delete("Hello");
         } catch (ElementNotFoundException e) {
             e.printStackTrace();
         }
-        bst.inorder();
+        bstString.inorder();
         try {
-            bst.delete(9);
+            bstString.delete("Hi");
         } catch (ElementNotFoundException e) {
             System.out.println(e);
         }
