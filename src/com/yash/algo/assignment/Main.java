@@ -44,68 +44,111 @@ public class Main {
 //            System.out.println(e);
 //        }
 
-        BinarySearchTree<String> bstString = new BinarySearchTree<>();
-        bstString.insert("Hello");
-        bstString.inorder();
-        bstString.insert("World");
-        bstString.inorder();
-        bstString.insert("World");
-        bstString.inorder();
-        try {
-            bstString.delete("Hello");
-        } catch (ElementNotFoundException e) {
-            e.printStackTrace();
-        }
-        bstString.inorder();
-        try {
-            bstString.delete("Hi");
-        } catch (ElementNotFoundException e) {
-            System.out.println(e);
-        }
+//        BinarySearchTree<String> bstString = new BinarySearchTree<>();
+//        bstString.insert("Hello");
+//        bstString.inorder();
+//        bstString.insert("World");
+//        bstString.inorder();
+//        bstString.insert("World");
+//        bstString.inorder();
+//        try {
+//            bstString.delete("Hello");
+//        } catch (ElementNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        bstString.inorder();
+//        try {
+//            bstString.delete("Hi");
+//        } catch (ElementNotFoundException e) {
+//            System.out.println(e);
+//        }
 
-//        SkipList skipList = new SkipList(10);
+//        SkipList<Integer> skipList = new SkipList<>(10);
+//        System.out.println("Inserting 8");
 //        skipList.insert(8);
 //        skipList.printSkipList();
+//        System.out.println("Inserting 5");
 //        skipList.insert(5);
 //        skipList.printSkipList();
+//        System.out.println("Inserting 5");
+//        skipList.insert(5);
+//        skipList.printSkipList();
+//        System.out.println("Inserting 1");
 //        skipList.insert(1);
 //        skipList.printSkipList();
+//        System.out.println("Inserting 7");
 //        skipList.insert(7);
 //        skipList.printSkipList();
+//        System.out.println("Inserting 9");
 //        skipList.insert(9);
 //        skipList.printSkipList();
+//        System.out.println("Inserting 9");
+//        skipList.insert(9);
+//        skipList.printSkipList();
+//        System.out.println("Inserting 0");
 //        skipList.insert(0);
 //        skipList.printSkipList();
+//        System.out.println("Inserting 4");
 //        skipList.insert(4);
 //        skipList.printSkipList();
+//        System.out.println("Inserting 6");
 //        skipList.insert(6);
 //        skipList.printSkipList();
+//        System.out.println("Inserting 3");
 //        skipList.insert(3);
 //        skipList.printSkipList();
+//        System.out.println("Inserting 3");
+//        skipList.insert(3);
+//        skipList.printSkipList();
+//        System.out.println("Inserting 2");
 //        skipList.insert(2);
 //        skipList.printSkipList();
+//        System.out.println("Deleting 0");
 //        try {
 //            skipList.delete(0);
 //        } catch (ElementNotFoundException e) {
 //            System.out.println(e);
 //        }
 //        skipList.printSkipList();
+//        System.out.println("Deleting 3");
 //        try {
-//            skipList.delete(6);
+//            skipList.delete(3);
 //        } catch (ElementNotFoundException e) {
 //            System.out.println(e);
 //        }
 //        skipList.printSkipList();
+//        System.out.println("Deleting 9");
 //        try {
 //            skipList.delete(9);
 //        } catch (ElementNotFoundException e) {
 //            System.out.println(e);
 //        }
 //        skipList.printSkipList();
+//        System.out.println("Deleting -10");
 //        try {
 //            skipList.delete(-10);
 //        } catch (ElementNotFoundException e) {
 //            System.out.println(e);
 //        }
+
+        SkipList<String> skipListString = new SkipList<>(5);
+        skipListString.insert("Hello String");
+        skipListString.printSkipList();
+        skipListString.insert("I know it");
+        skipListString.printSkipList();
+        skipListString.insert("I know it");
+        skipListString.printSkipList();
+        skipListString.insert("You are it");
+        skipListString.printSkipList();
+        try {
+            skipListString.delete("I know it");
+        } catch (ElementNotFoundException e) {
+            e.printStackTrace();
+        }
+        skipListString.printSkipList();
+        skipListString.insert("Hello Strong");
+        skipListString.printSkipList();
+        skipListString.insert("A wood pecker got killed");
+        skipListString.printSkipList();
     }
 }
