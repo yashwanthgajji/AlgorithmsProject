@@ -3,18 +3,18 @@ package com.yash.algo.assignment.splaytree;
 
 import com.yash.algo.assignment.ElementNotFoundException;
 
-public class SplayTree {
-    static class Node {
-        int data;
-        Node left;
-        Node right;
-        Node parent;
+public class SplayTree<T extends Comparable<T>> {
+    static class Node<T extends Comparable<T>> {
+        T data;
+        Node<T> left;
+        Node<T> right;
+        Node<T> parent;
         Node() {
             left = null;
             right = null;
             parent = null;
         }
-        Node(int key) {
+        Node(T key) {
             data = key;
             left = null;
             right = null;
@@ -22,7 +22,7 @@ public class SplayTree {
         }
     }
 
-    private Node root;
+    private Node<T> root;
 
     public SplayTree() {
         root = null;
@@ -33,31 +33,31 @@ public class SplayTree {
         System.out.println();
     }
 
-    private void inorder(Node node) {
+    private void inorder(Node<T> node) {
         if(node == null) {
             return;
         }
         inorder(node.left);
-        System.out.print(node.data);
+        System.out.print(node.data+" ");
         inorder(node.right);
     }
 
-    public void insert(int key) {
+    public void insert(T key) {
         if(search(key) == null) {
             insert(root, key);
         }
     }
 
-    private void insert(Node node, int key) {
+    private void insert(Node<T> node, T key) {
         if(root == null) {
-            root = new Node(key);
+            root = new Node<>(key);
             splay(root);
             return;
         }
-        Node p = root;
-        Node q = root;
+        Node<T> p = root;
+        Node<T> q = root;
         while(p!=null) {
-            if(p.data > key) {
+            if(p.data.compareTo(key) > 0) {
                 q = p;
                 p = p.left;
             } else {
@@ -65,9 +65,9 @@ public class SplayTree {
                 p = p.right;
             }
         }
-        p = new Node(key);
+        p = new Node<>(key);
         p.parent = q;
-        if(q.data > key) {
+        if(q.data.compareTo(key) > 0) {
             q.left = p;
         } else {
             q.right = p;
@@ -75,29 +75,29 @@ public class SplayTree {
         splay(p);
     }
 
-    public Node search(int key) {
-        Node node = search(root, key);
+    public Node<T> search(T key) {
+        Node<T> node = search(root, key);
         if (node != null) {
             splay(node);
         }
         return node;
     }
 
-    private Node search(Node node, int key) {
+    private Node<T> search(Node<T> node, T key) {
         if (node == null) {
             return null;
         }
-        if (node.data == key) {
+        if (node.data.equals(key)) {
             return node;
         }
-        if (node.data > key) {
+        if (node.data.compareTo(key) > 0) {
             return search(node.left, key);
         }
         return search(node.right, key);
     }
 
-    private void leftRotate(Node p) {
-        Node q = p.right;
+    private void leftRotate(Node<T> p) {
+        Node<T> q = p.right;
         if(q != null) {
             if(p.parent == null) {
                 root = q;
@@ -116,8 +116,8 @@ public class SplayTree {
         }
     }
 
-    private void rightRotate(Node p) {
-        Node q = p.left;
+    private void rightRotate(Node<T> p) {
+        Node<T> q = p.left;
         if(q != null) {
             if(p.parent == null) {
                 root = q;
@@ -136,7 +136,7 @@ public class SplayTree {
         }
     }
 
-    private void splay(Node node) {
+    private void splay(Node<T> node) {
         while (node.parent != null) {
             if(node.parent.left == node) {
                 rightRotate(node.parent);
@@ -146,14 +146,13 @@ public class SplayTree {
         }
     }
 
-    public void delete(int key) throws ElementNotFoundException {
-        Node p = search(key);
+    public void delete(T key) throws ElementNotFoundException {
+        Node<T> p = search(key);
         if (p == null) {
             throw new ElementNotFoundException();
         }
-        //Todo Remove the key and join the two sub trees.
-        Node leftSubTree = p.left;
-        Node rightSubTree = p.right;
+        Node<T> leftSubTree = p.left;
+        Node<T> rightSubTree = p.right;
         if(leftSubTree == null) {
             root = rightSubTree;
             rightSubTree.parent = null;
@@ -163,7 +162,7 @@ public class SplayTree {
         } else {
             leftSubTree.parent = null;
             rightSubTree.parent = null;
-            Node leftMax = treeMaximum(leftSubTree);
+            Node<T> leftMax = treeMaximum(leftSubTree);
             splay(leftMax);
             root = leftMax;
             leftMax.right = rightSubTree;
@@ -171,7 +170,7 @@ public class SplayTree {
         }
     }
 
-    private Node treeMaximum(Node node) {
+    private Node<T> treeMaximum(Node<T> node) {
         if(node == null) {
             return null;
         }

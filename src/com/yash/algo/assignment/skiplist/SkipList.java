@@ -5,47 +5,46 @@ import com.yash.algo.assignment.ElementNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SkipList {
-    class Node {
-        int data;
-        Node next;
-        Node lower;
+public class SkipList<T extends Comparable<T>> {
+    static class Node<T extends Comparable<T>> {
+        T data;
+        Node<T> next;
+        Node<T> lower;
         Node() {
-            data = Integer.MAX_VALUE;
             next = null;
             lower = null;
         }
-        Node(int key) {
+        Node(T key) {
             data = key;
             next = null;
             lower = null;
         }
     }
 
-    class Level {
+    static class Level<T extends Comparable<T>> {
         int level;
-        Node start;
-        Node end;
+        Node<T> start;
+        Node<T> end;
         Level(int level) {
             this.level = level;
-            start = new Node(Integer.MIN_VALUE);
-            end = new Node(Integer.MAX_VALUE);
+            start = new Node<>();
+            end = new Node<>();
             start.next = end;
         }
     }
 
-    private int numOfLevels;
-    private Level levels[];
+    private final int numOfLevels;
+    private Level<T>[] levels;
 
     public SkipList(int numOfElements) {
         this.numOfLevels = (int) (Math.log(numOfElements) / Math.log(2));
-        initializeLevels(numOfLevels);
+        initializeLevels();
     }
 
-    private void initializeLevels(int numOfLevels) {
-        levels = new Level[this.numOfLevels];
-        for(int i=0; i < numOfLevels; i++) {
-            levels[i] = new Level(i);
+    private void initializeLevels() {
+        levels = new Level[numOfLevels];
+        for(int i=0; i < this.numOfLevels; i++) {
+            levels[i] = new Level<>(i);
             if(i != 0) {
                 levels[i].start.lower = levels[i-1].start;
                 levels[i].end.lower = levels[i-1].end;
@@ -58,26 +57,20 @@ public class SkipList {
         return random.nextInt(2);
     }
 
-    public Node search(int key) {
-        Node predecessor = floor(key);
-        if(predecessor.data == key) {
+    public Node<T> search(T key) {
+        Node<T> predecessor = floor(key);
+        if(predecessor.data.equals(key)) {
             return predecessor;
         } else {
             return null;
         }
     }
 
-    private Node floor(int key) {
+    private Node<T> floor(T key) {
         int currLevel = numOfLevels - 1;
-        Node p = levels[currLevel].start;
+        Node<T> p = levels[currLevel].start;
         while (true) {
-            if (p.data == key) {
-                while (p.lower != null) {
-                    p = p.lower;
-                    currLevel -= 1;
-                    return p;
-                }
-            } else if (p.next == levels[currLevel].end || p.next.data > key){
+            if (p.next == levels[currLevel].end || p.next.data.compareTo(key) >= 0){
                 if(p.lower == null) {
                     return p;
                 }
@@ -89,19 +82,12 @@ public class SkipList {
         }
     }
 
-    private ArrayList<Node> predecessors(int key) {
-        ArrayList<Node> preds = new ArrayList<>();
+    private ArrayList<Node<T>> predecessors(T key) {
+        ArrayList<Node<T>> preds = new ArrayList<>();
         int currLevel = numOfLevels - 1;
-        Node p = levels[currLevel].start;
+        Node<T> p = levels[currLevel].start;
         while (true) {
-            if (p.next.data == key) {
-                while (p != null) {
-                    preds.add(p);
-                    p = p.lower;
-                    currLevel -= 1;
-                }
-                break;
-            } else if (p.next == levels[currLevel].end || p.next.data > key){
+             if (p.next == levels[currLevel].end || p.next.data.compareTo(key) >= 0){
                 preds.add(p);
                 if(p.lower != null) {
                     p = p.lower;
@@ -116,19 +102,19 @@ public class SkipList {
         return preds;
     }
 
-    public void insert(int key) {
-        ArrayList<Node> nodeList = predecessors(key);
-        if(nodeList.get(nodeList.size() - 1).data != key) {
-            Node lower = null;
-            Node newNode = new Node(key);
-            Node curr = nodeList.get(nodeList.size() - 1);
+    public void insert(T key) {
+        ArrayList<Node<T>> nodeList = predecessors(key);
+        if(nodeList.get(nodeList.size() - 1).next.data == null || !nodeList.get(nodeList.size() - 1).next.data.equals(key)) {
+            Node<T> lower = null;
+            Node<T> newNode = new Node<>(key);
+            Node<T> curr = nodeList.get(nodeList.size() - 1);
             newNode.next = curr.next;
             curr.next = newNode;
             newNode.lower = lower;
             lower = newNode;
             for (int i = nodeList.size() - 2; i >= 0; i--) {
                 if(flipACoin() == 1) {
-                    newNode = new Node(key);
+                    newNode = new Node<>(key);
                     curr = nodeList.get(i);
                     newNode.next = curr.next;
                     curr.next = newNode;
@@ -141,14 +127,14 @@ public class SkipList {
         }
     }
 
-    public void delete(int key) throws ElementNotFoundException {
-        ArrayList<Node> nodeList = predecessors(key);
-        if(nodeList.get(nodeList.size() - 1).next.data != key) {
+    public void delete(T key) throws ElementNotFoundException {
+        ArrayList<Node<T>> nodeList = predecessors(key);
+        if(nodeList.get(nodeList.size() - 1).next.data == null || !nodeList.get(nodeList.size() - 1).next.data.equals(key)) {
             throw new ElementNotFoundException();
         } else {
             for (int i = nodeList.size() - 1; i >= 0; i--) {
-                Node curr = nodeList.get(i);
-                if (curr.next.data == key) {
+                Node<T> curr = nodeList.get(i);
+                if (curr.next.data != null && curr.next.data.equals(key)) {
                     curr.next = curr.next.next;
                 } else {
                     break;
@@ -158,8 +144,8 @@ public class SkipList {
     }
 
     public void printList() {
-        Level zeroLevel = levels[0];
-        Node p = zeroLevel.start.next;
+        Level<T> zeroLevel = levels[0];
+        Node<T> p = zeroLevel.start.next;
         while (p != zeroLevel.end) {
             System.out.println(p.data+" ");
             p = p.next;
@@ -170,8 +156,8 @@ public class SkipList {
     public void printSkipList() {
         for(int i = numOfLevels - 1; i>=0; i--) {
             System.out.print("Level " + i + ": ");
-            Level currLevel = levels[i];
-            Node p = currLevel.start.next;
+            Level<T> currLevel = levels[i];
+            Node<T> p = currLevel.start.next;
             while (p != currLevel.end) {
                 System.out.print(p.data+" ");
                 p = p.next;
