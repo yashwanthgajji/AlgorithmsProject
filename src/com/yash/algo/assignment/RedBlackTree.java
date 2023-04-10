@@ -1,4 +1,4 @@
-package com.yash.algo.assignment.rbtree;
+package com.yash.algo.assignment;
 
 import com.yash.algo.assignment.ElementNotFoundException;
 

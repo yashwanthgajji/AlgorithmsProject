@@ -1,11 +1,9 @@
-package com.yash.algo.assignment.skiplist;
-
-import com.yash.algo.assignment.ElementNotFoundException;
+package com.yash.algo.assignment;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SkipList<T extends Comparable<T>> {
+public class SkipList<T extends Comparable<T>> extends DataStructureV1<T> {
     static class Node<T extends Comparable<T>> {
         T data;
         Node<T> next;
@@ -36,8 +34,9 @@ public class SkipList<T extends Comparable<T>> {
     private final int numOfLevels;
     private Level<T>[] levels;
 
-    public SkipList(int numOfElements) {
-        this.numOfLevels = (int) (Math.log(numOfElements) / Math.log(2));
+    public SkipList() {
+//        this.numOfLevels = (int) (Math.log(numOfElements) / Math.log(2));
+        numOfLevels = 5;
         initializeLevels();
     }
 
@@ -102,6 +101,7 @@ public class SkipList<T extends Comparable<T>> {
         return preds;
     }
 
+    @Override
     public void insert(T key) {
         ArrayList<Node<T>> nodeList = predecessors(key);
         if(nodeList.get(nodeList.size() - 1).next.data == null || !nodeList.get(nodeList.size() - 1).next.data.equals(key)) {
@@ -127,6 +127,7 @@ public class SkipList<T extends Comparable<T>> {
         }
     }
 
+    @Override
     public void delete(T key) throws ElementNotFoundException {
         ArrayList<Node<T>> nodeList = predecessors(key);
         if(nodeList.get(nodeList.size() - 1).next.data == null || !nodeList.get(nodeList.size() - 1).next.data.equals(key)) {

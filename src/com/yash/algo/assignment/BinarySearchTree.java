@@ -1,8 +1,6 @@
-package com.yash.algo.assignment.bst;
+package com.yash.algo.assignment;
 
-import com.yash.algo.assignment.ElementNotFoundException;
-
-public class BinarySearchTree<T extends Comparable<T>> {
+public class BinarySearchTree<T extends Comparable<T>> extends DataStructureV1<T> {
     static class Node<T extends Comparable<T>> {
         T data;
         Node<T> left;
