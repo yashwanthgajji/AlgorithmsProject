@@ -7,9 +7,12 @@ import java.util.Scanner;
 public class MyMainV1 {
 
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
 //        calculateForIntegerData(args);
 //        calculateForDoubleData(args);
 //        calculateForStringData(args);
+        long stopTime = System.nanoTime();
+        System.out.println("Time taken is : " + (stopTime - startTime));
     }
 
     private static void calculateForIntegerData(String[] args) {
