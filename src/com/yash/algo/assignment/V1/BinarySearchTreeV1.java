@@ -2,7 +2,7 @@ package com.yash.algo.assignment.V1;
 
 import com.yash.algo.assignment.ElementNotFoundException;
 
-public class BinarySearchTreeV1<T extends Comparable<T>> extends DataStructureV1<T> {
+public class BinarySearchTreeV1<T extends Comparable<T>> implements DataStructureV1<T> {
     static class Node<T extends Comparable<T>> {
         T data;
         Node<T> left;
