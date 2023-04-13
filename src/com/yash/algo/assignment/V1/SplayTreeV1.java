@@ -1,9 +1,10 @@
-package com.yash.algo.assignment.splaytree;
+package com.yash.algo.assignment.V1;
 
 
 import com.yash.algo.assignment.ElementNotFoundException;
+import com.yash.algo.assignment.V1.DataStructureV1;
 
-public class SplayTree<T extends Comparable<T>> {
+public class SplayTreeV1<T extends Comparable<T>> extends DataStructureV1<T> {
     static class Node<T extends Comparable<T>> {
         T data;
         Node<T> left;
@@ -24,11 +25,12 @@ public class SplayTree<T extends Comparable<T>> {
 
     private Node<T> root;
 
-    public SplayTree() {
+    public SplayTreeV1() {
         root = null;
     }
 
-    public void inorder() {
+    @Override
+    public void ascendingOrder() {
         inorder(root);
         System.out.println();
     }
@@ -42,6 +44,7 @@ public class SplayTree<T extends Comparable<T>> {
         inorder(node.right);
     }
 
+    @Override
     public void insert(T key) {
         if(search(key) == null) {
             insert(root, key);
@@ -146,6 +149,7 @@ public class SplayTree<T extends Comparable<T>> {
         }
     }
 
+    @Override
     public void delete(T key) throws ElementNotFoundException {
         Node<T> p = search(key);
         if (p == null) {

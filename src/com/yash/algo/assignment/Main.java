@@ -1,10 +1,7 @@
 package com.yash.algo.assignment;
 
-import com.yash.algo.assignment.bst.BinarySearchTree;
-import com.yash.algo.assignment.rbtree.RedBlackTree;
-import com.yash.algo.assignment.skiplist.SkipList;
-import com.yash.algo.assignment.splaytree.SplayTree;
-import com.yash.algo.assignment.temp.Car;
+import com.yash.algo.assignment.V1.DataStructureV1;
+import com.yash.algo.assignment.V1.SplayTreeV1;
 
 public class Main {
 
@@ -44,24 +41,24 @@ public class Main {
 //            System.out.println(e);
 //        }
 
-        SplayTree<String> bstString = new SplayTree<>();
-        bstString.insert("Hello");
-        bstString.inorder();
-        bstString.insert("World");
-        bstString.inorder();
-        bstString.insert("World");
-        bstString.inorder();
-        try {
-            bstString.delete("Hello");
-        } catch (ElementNotFoundException e) {
-            e.printStackTrace();
-        }
-        bstString.inorder();
-        try {
-            bstString.delete("Hi");
-        } catch (ElementNotFoundException e) {
-            System.out.println(e);
-        }
+        DataStructureV1<String> bstString = new SplayTreeV1<>();
+//        bstString.insert("Hello");
+//        bstString.inorder();
+//        bstString.insert("World");
+//        bstString.inorder();
+//        bstString.insert("World");
+//        bstString.inorder();
+//        try {
+//            bstString.delete("Hello");
+//        } catch (ElementNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        bstString.inorder();
+//        try {
+//            bstString.delete("Hi");
+//        } catch (ElementNotFoundException e) {
+//            System.out.println(e);
+//        }
 
 //        SkipList<Integer> skipList = new SkipList<>(10);
 //        System.out.println("Inserting 8");
