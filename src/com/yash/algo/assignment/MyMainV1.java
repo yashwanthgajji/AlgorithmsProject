@@ -1,5 +1,7 @@
 package com.yash.algo.assignment;
 
+import com.yash.algo.assignment.V1.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;

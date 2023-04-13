@@ -1,5 +1,8 @@
-package com.yash.algo.assignment;
+package com.yash.algo.assignment.V1;
 
+
+import com.yash.algo.assignment.ElementNotFoundException;
+import com.yash.algo.assignment.V1.DataStructureV1;
 
 public class SplayTreeV1<T extends Comparable<T>> extends DataStructureV1<T> {
     static class Node<T extends Comparable<T>> {

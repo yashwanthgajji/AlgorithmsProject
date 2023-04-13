@@ -1,5 +1,8 @@
 package com.yash.algo.assignment;
 
+import com.yash.algo.assignment.V1.DataStructureV1;
+import com.yash.algo.assignment.V1.SplayTreeV1;
+
 public class Main {
 
     public static void main(String[] args) {

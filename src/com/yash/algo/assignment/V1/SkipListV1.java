@@ -1,4 +1,7 @@
-package com.yash.algo.assignment;
+package com.yash.algo.assignment.V1;
+
+import com.yash.algo.assignment.ElementNotFoundException;
+import com.yash.algo.assignment.V1.DataStructureV1;
 
 import java.util.ArrayList;
 import java.util.Random;

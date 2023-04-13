@@ -1,4 +1,6 @@
-package com.yash.algo.assignment;
+package com.yash.algo.assignment.V1;
+
+import com.yash.algo.assignment.ElementNotFoundException;
 
 import java.util.HashSet;
 
@@ -6,7 +8,7 @@ public class HashTableV1<T extends Comparable<T>> extends DataStructureV1<T> {
 
     HashSet<T> hashSet;
 
-    HashTableV1() {
+    public HashTableV1() {
         hashSet = new HashSet<>();
     }
     @Override
