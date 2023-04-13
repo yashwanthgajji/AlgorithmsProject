@@ -1,8 +1,6 @@
 package com.yash.algo.assignment;
 
-import com.yash.algo.assignment.ElementNotFoundException;
-
-public class RedBlackTree {
+public class RedBlackTreeV1 {
     static class Node{
         int data;
         Node left;
@@ -26,7 +24,7 @@ public class RedBlackTree {
 
     private Node root;
     private final Node nill = new Node(-1);
-    public RedBlackTree() {
+    public RedBlackTreeV1() {
         root = nill;
     }
 

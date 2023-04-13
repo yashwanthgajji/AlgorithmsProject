@@ -38,7 +38,7 @@ public class Main {
 //            System.out.println(e);
 //        }
 
-        DataStructureV1<String> bstString = new SplayTree<>();
+        DataStructureV1<String> bstString = new SplayTreeV1<>();
 //        bstString.insert("Hello");
 //        bstString.inorder();
 //        bstString.insert("World");

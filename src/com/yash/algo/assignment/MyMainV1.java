@@ -18,15 +18,14 @@ public class MyMainV1 {
             int dataStructureSelector = Integer.parseInt(args[0]);
             String inputFileName = args[1];
             switch (dataStructureSelector) {
-                case 0 -> dataStructureV1 = new HashTable<>();
-                case 1 -> dataStructureV1 = new BinarySearchTree<>();
-                case 2 -> dataStructureV1 = new SplayTree<>();
-                case 3 -> dataStructureV1 = new SkipList<>();
-//                case 4 -> dataStructure = new RedBlackTree();
+                case 0 -> dataStructureV1 = new HashTableV1<>();
+                case 1 -> dataStructureV1 = new BinarySearchTreeV1<>();
+                case 2 -> dataStructureV1 = new SplayTreeV1<>();
+                case 3 -> dataStructureV1 = new SkipListV1<>();
+//                case 4 -> dataStructure = new RedBlackTreeV1();
                 default -> System.out.println("Enter the correct value for Data Structure");
             }
             if (dataStructureV1 != null) {
-                dataStructureV1.getClass().componentType();
                 File file = new File(inputFileName);
                 try {
                     Scanner scanner = new Scanner(file);
@@ -45,6 +44,7 @@ public class MyMainV1 {
                 } catch (FileNotFoundException | ElementNotFoundException e) {
                     e.printStackTrace();
                 }
+                dataStructureV1.ascendingOrder();
             } else {
                 System.out.println("Enter correct Data Structure");
             }
@@ -57,15 +57,14 @@ public class MyMainV1 {
             int dataStructureSelector = Integer.parseInt(args[0]);
             String inputFileName = args[1];
             switch (dataStructureSelector) {
-                case 0 -> dataStructureV1 = new HashTable<>();
-                case 1 -> dataStructureV1 = new BinarySearchTree<>();
-                case 2 -> dataStructureV1 = new SplayTree<>();
-                case 3 -> dataStructureV1 = new SkipList<>();
-//                case 4 -> dataStructure = new RedBlackTree();
+                case 0 -> dataStructureV1 = new HashTableV1<>();
+                case 1 -> dataStructureV1 = new BinarySearchTreeV1<>();
+                case 2 -> dataStructureV1 = new SplayTreeV1<>();
+                case 3 -> dataStructureV1 = new SkipListV1<>();
+//                case 4 -> dataStructure = new RedBlackTreeV1();
                 default -> System.out.println("Enter the correct value for Data Structure");
             }
             if (dataStructureV1 != null) {
-                dataStructureV1.getClass().componentType();
                 File file = new File(inputFileName);
                 try {
                     Scanner scanner = new Scanner(file);
@@ -84,6 +83,7 @@ public class MyMainV1 {
                 } catch (FileNotFoundException | ElementNotFoundException e) {
                     e.printStackTrace();
                 }
+                dataStructureV1.ascendingOrder();
             } else {
                 System.out.println("Enter correct Data Structure");
             }
@@ -96,15 +96,14 @@ public class MyMainV1 {
             int dataStructureSelector = Integer.parseInt(args[0]);
             String inputFileName = args[1];
             switch (dataStructureSelector) {
-                case 0 -> dataStructureV1 = new HashTable<>();
-                case 1 -> dataStructureV1 = new BinarySearchTree<>();
-                case 2 -> dataStructureV1 = new SplayTree<>();
-                case 3 -> dataStructureV1 = new SkipList<>();
-//                case 4 -> dataStructure = new RedBlackTree();
+                case 0 -> dataStructureV1 = new HashTableV1<>();
+                case 1 -> dataStructureV1 = new BinarySearchTreeV1<>();
+                case 2 -> dataStructureV1 = new SplayTreeV1<>();
+                case 3 -> dataStructureV1 = new SkipListV1<>();
+//                case 4 -> dataStructure = new RedBlackTreeV1();
                 default -> System.out.println("Enter the correct value for Data Structure");
             }
             if (dataStructureV1 != null) {
-                dataStructureV1.getClass().componentType();
                 File file = new File(inputFileName);
                 try {
                     Scanner scanner = new Scanner(file);
@@ -123,6 +122,7 @@ public class MyMainV1 {
                 } catch (FileNotFoundException | ElementNotFoundException e) {
                     e.printStackTrace();
                 }
+                dataStructureV1.ascendingOrder();
             } else {
                 System.out.println("Enter correct Data Structure");
             }

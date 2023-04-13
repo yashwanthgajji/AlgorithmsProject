@@ -1,6 +1,6 @@
 package com.yash.algo.assignment;
 
-public class BinarySearchTree<T extends Comparable<T>> extends DataStructureV1<T> {
+public class BinarySearchTreeV1<T extends Comparable<T>> extends DataStructureV1<T> {
     static class Node<T extends Comparable<T>> {
         T data;
         Node<T> left;
@@ -21,11 +21,12 @@ public class BinarySearchTree<T extends Comparable<T>> extends DataStructureV1<T
 
     private Node<T> root;
 
-    public BinarySearchTree() {
+    public BinarySearchTreeV1() {
         root = null;
     }
 
-    public void inorder() {
+    @Override
+    public void ascendingOrder() {
         inorder(root);
         System.out.println();
     }

@@ -3,7 +3,7 @@ package com.yash.algo.assignment;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SkipList<T extends Comparable<T>> extends DataStructureV1<T> {
+public class SkipListV1<T extends Comparable<T>> extends DataStructureV1<T> {
     static class Node<T extends Comparable<T>> {
         T data;
         Node<T> next;
@@ -34,7 +34,7 @@ public class SkipList<T extends Comparable<T>> extends DataStructureV1<T> {
     private final int numOfLevels;
     private Level<T>[] levels;
 
-    public SkipList() {
+    public SkipListV1() {
 //        this.numOfLevels = (int) (Math.log(numOfElements) / Math.log(2));
         numOfLevels = 5;
         initializeLevels();
@@ -144,7 +144,8 @@ public class SkipList<T extends Comparable<T>> extends DataStructureV1<T> {
         }
     }
 
-    public void printList() {
+    @Override
+    public void ascendingOrder() {
         Level<T> zeroLevel = levels[0];
         Node<T> p = zeroLevel.start.next;
         while (p != zeroLevel.end) {

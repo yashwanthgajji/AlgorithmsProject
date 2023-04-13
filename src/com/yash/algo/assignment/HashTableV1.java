@@ -1,6 +1,6 @@
 package com.yash.algo.assignment;
 
-public class HashTable<T extends Comparable<T>> extends DataStructureV1<T> {
+public class HashTableV1<T extends Comparable<T>> extends DataStructureV1<T> {
     @Override
     public void insert(T key) {
 
@@ -8,6 +8,11 @@ public class HashTable<T extends Comparable<T>> extends DataStructureV1<T> {
 
     @Override
     public void delete(T key) throws ElementNotFoundException {
+
+    }
+
+    @Override
+    public void ascendingOrder() {
 
     }
 }

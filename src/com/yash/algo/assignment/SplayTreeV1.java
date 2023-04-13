@@ -1,7 +1,7 @@
 package com.yash.algo.assignment;
 
 
-public class SplayTree<T extends Comparable<T>> extends DataStructureV1<T> {
+public class SplayTreeV1<T extends Comparable<T>> extends DataStructureV1<T> {
     static class Node<T extends Comparable<T>> {
         T data;
         Node<T> left;
@@ -22,11 +22,12 @@ public class SplayTree<T extends Comparable<T>> extends DataStructureV1<T> {
 
     private Node<T> root;
 
-    public SplayTree() {
+    public SplayTreeV1() {
         root = null;
     }
 
-    public void inorder() {
+    @Override
+    public void ascendingOrder() {
         inorder(root);
         System.out.println();
     }
