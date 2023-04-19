@@ -2,12 +2,12 @@ package com.yash.algo.assignment.V1;
 
 import com.yash.algo.assignment.ElementNotFoundException;
 
-public class RedBlackTreeV1 {
-    static class Node{
-        int data;
-        Node left;
-        Node right;
-        Node parent;
+public class RedBlackTreeV1<T extends Comparable<T>> implements DataStructureV1<T> {
+    static class Node<T extends Comparable<T>>{
+        T data;
+        Node<T> left;
+        Node<T> right;
+        Node<T> parent;
         int color; //1-RED, 0-BLACK
         Node() {
             left = null;
@@ -15,7 +15,7 @@ public class RedBlackTreeV1 {
             parent = null;
             color = 0;
         }
-        Node(int d) {
+        Node(T d) {
             data = d;
             left = null;
             right = null;
@@ -24,97 +24,31 @@ public class RedBlackTreeV1 {
         }
     }
 
-    private Node root;
-    private final Node nill = new Node(-1);
+    private Node<T> root;
+    private Node<T> nil;
     public RedBlackTreeV1() {
-        root = nill;
+        nil = new Node<>();
+        nil.color = 0;
+        root = nil;
     }
 
-    private Node createNewNode(int value) {
-        Node newNode = new Node(value);
+    private Node<T> createNewNode(T value) {
+        Node<T> newNode = new Node<>(value);
         newNode.color = 1;
-        newNode.left = nill;
-        newNode.right = nill;
-        newNode.parent = nill;
+        newNode.left = nil;
+        newNode.right = nil;
+        newNode.parent = nil;
         return newNode;
     }
 
-    public void insert(int key) {
-        if (root == nill) {
-            root = createNewNode(key);
-            insertFix(root);
-        } else {
-            Node p = root;
-            Node q = p;
-            while(p != nill) {
-                if (p.data > key) {
-                    q = p;
-                    p = p.left;
-                } else {
-                    q = p;
-                    p = p.right;
-                }
-            }
-            p = createNewNode(key);
-            if (q.data>key) {
-                q.left = p;
-            } else {
-                q.right = p;
-            }
-            p.parent = q;
-            insertFix(p);
-        }
-    }
-
-    private void insertFix(Node z) {
-        if(z == root) {
-            z.color = 0;
-            return;
-        }
-        while(z.parent.color == 1) {
-            if(z.parent == z.parent.parent.left) {
-                Node y = z.parent.parent.right;
-                if(y.color == 1) {
-                    z.parent.color = 0;
-                    y.color = 0;
-                    z.parent.parent.color = 1;
-                    z = z.parent.parent;
-                } else {
-                    if(z == z.parent.right) {
-                        leftRotate(z.parent);
-                    }
-                    z.parent.color = 0;
-                    z.parent.parent.color = 1;
-                    rightRotate(z.parent.parent);
-                }
-            } else {
-                Node y = z.parent.parent.left;
-                if(y.color == 1) {
-                    z.parent.color = 0;
-                    y.color = 0;
-                    z.parent.parent.color = 1;
-                    z = z.parent.parent;
-                } else {
-                    if(z == z.parent.left) {
-                        rightRotate(z.parent);
-                    }
-                    z.parent.color = 0;
-                    z.parent.parent.color = 1;
-                    leftRotate(z.parent.parent);
-                }
-            }
-        }
-        root.color = 0;
-    }
-
-    private void leftRotate(Node x) {
-        Node y = x.right;
+    private void leftRotate(Node<T> x) {
+        Node<T> y = x.right;
         x.right = y.left;
-        if (y.left != nill) {
+        if (y.left != nil) {
             y.left.parent = x;
         }
         y.parent = x.parent;
-        if (x.parent == nill) {
+        if (x.parent == nil) {
             root = y;
         } else if (x == x.parent.left) {
             x.parent.left = y;
@@ -125,75 +59,143 @@ public class RedBlackTreeV1 {
         x.parent = y;
     }
 
-    private void rightRotate(Node x) {
-        Node y = x.left;
+    private void rightRotate(Node<T> x) {
+        Node<T> y = x.left;
         x.left = y.right;
-        if (y.right != nill) {
+        if (y.right != nil) {
             y.right.parent = x;
         }
         y.parent = x.parent;
-        if (x.parent == nill) {
+        if (x.parent == nil) {
             root = y;
-        } else if (x == x.parent.left) {
-            x.parent.left = y;
-        } else {
+        } else if (x == x.parent.right) {
             x.parent.right = y;
+        } else {
+            x.parent.left = y;
         }
         y.right = x;
         x.parent = y;
     }
 
-    private Node search(Node node, int key) {
-        if (node == nill) {
-            return nill;
+    private Node<T> search(Node<T> node, T key) {
+        if (node == nil) {
+            return null;
         }
-        if (node.data == key) {
+        if (node.data.equals(key)) {
             return node;
         }
-        if (node.data > key) {
+        if (node.data.compareTo(key) > 0) {
             return search(node.left, key);
         }
         return search(node.right, key);
     }
 
-    private void transplant(Node x, Node y) {
-        if(x.parent == nill) {
-            root = y;
-        } else if (x == x.parent.left) {
-            x.parent.left = y;
-        } else {
-            x.parent.right = y;
+    @Override
+    public void insert(T key) {
+        if (search(root, key) != null) {
+            return;
         }
-        y.parent = x.parent;
+        Node<T> z = createNewNode(key);
+        Node<T> x = root;
+        Node<T> y = nil;
+        while (x != nil) {
+            y = x;
+            if (x.data.compareTo(z.data) > 0) {
+                x = x.left;
+            } else {
+                x = x.right;
+            }
+        }
+        z.parent = y;
+        if (y == nil) {
+            root = z;
+        } else if (y.data.compareTo(z.data) > 0) {
+            y.left = z;
+        } else {
+            y.right = z;
+        }
+        z.color = 1;
+        insert_fix(z);
     }
 
-    private Node treeMinimum(Node node) {
-        if(node == nill) {
-            return nill;
+    private void insert_fix(Node<T> z) {
+        while (z.parent.color == 1) {
+            if (z.parent == z.parent.parent.left) {
+                Node<T> y = z.parent.parent.right;
+                if (y.color == 1) {
+                    z.parent.color = 0;
+                    y.color = 0;
+                    z.parent.parent.color = 1;
+                    z = z.parent.parent;
+                } else {
+                    if (z == z.parent.right) {
+                        z = z.parent;
+                        leftRotate(z);
+                    }
+                    z.parent.color = 0;
+                    z.parent.parent.color = 1;
+                    rightRotate(z.parent.parent);
+                }
+            } else {
+                Node<T> y = z.parent.parent.left;
+                if (y.color == 1) {
+                    z.parent.color = 0;
+                    y.color = 0;
+                    z.parent.parent.color = 1;
+                    z = z.parent.parent;
+                } else {
+                    if (z == z.parent.left) {
+                        z = z.parent;
+                        rightRotate(z);
+                    }
+                    z.parent.color = 0;
+                    z.parent.parent.color = 1;
+                    leftRotate(z.parent.parent);
+                }
+            }
         }
-        if (node.left == nill) {
+        root.color = 0;
+    }
+
+    private void transplant(Node<T> u, Node<T> v) {
+        if (u.parent == nil) {
+            root = v;
+        } else if (u == u.parent.left) {
+            u.parent.left = v;
+        } else {
+            u.parent.right = v;
+        }
+        v.parent = u.parent;
+    }
+
+    private Node<T> treeMinimum(Node<T> node) {
+        if (node == nil) {
+            return nil;
+        }
+        if (node.left == nil) {
             return node;
         }
         return treeMinimum(node.left);
     }
 
-    public void delete(int key) throws ElementNotFoundException {
-        Node z = search(root, key);
-        if (z == nill) {
+    @Override
+    public void delete(T key) throws ElementNotFoundException {
+        Node<T> z = search(root, key);
+        if (z == null) {
             throw new ElementNotFoundException();
         }
-        Node y = z;
-        int y_original_color = y.color;
-        Node x = nill;
-        if(z.left == nill) {
+        Node<T> y = z;
+        int yOriginalColor = y.color;
+        Node<T> x;
+        if (z.left == nil) {
             x = z.right;
             transplant(z, z.right);
-        } else if(z.right == nill) {
+        } else if (z.right == nil) {
             x = z.left;
             transplant(z, z.left);
         } else {
             y = treeMinimum(z.right);
-            y_original_color = y.color;
+            yOriginalColor = y.color;
             x = y.right;
             if (y != z.right) {
                 transplant(y, y.right);
@@ -207,19 +209,20 @@ public class RedBlackTreeV1 {
             y.left.parent = y;
             y.color = z.color;
         }
-        if (y_original_color == 0) {
+        if (yOriginalColor == 0) {
             deleteFix(x);
         }
     }
 
-    private void deleteFix(Node x) {
-        while (x != root && x.color == 0) {
+    private void deleteFix(Node<T> x) {
+        while (x != root && x.color ==0) {
             if (x == x.parent.left) {
-                Node w = x.parent.right;
+                Node<T> w = x.parent.right;
                 if (w.color == 1) {
                     w.color = 0;
                     x.parent.color = 1;
                     leftRotate(x.parent);
+                    w = x.parent.right;
                 }
                 if (w.left.color == 0 && w.right.color == 0) {
                     w.color = 1;
@@ -238,11 +241,12 @@ public class RedBlackTreeV1 {
                     x = root;
                 }
             } else {
-                Node w = x.parent.left;
-                if(w.color == 1) {
+                Node<T> w = x.parent.left;
+                if (w.color == 1) {
                     w.color = 0;
                     x.parent.color = 1;
                     rightRotate(x.parent);
+                    w = x.parent.left;
                 }
                 if (w.right.color == 0 && w.left.color == 0) {
                     w.color = 1;
@@ -265,17 +269,19 @@ public class RedBlackTreeV1 {
         x.color = 0;
     }
 
-    public void inorder() {
+    @Override
+    public void ascendingOrder() {
         inorder(root);
         System.out.println();
     }
 
-    private void inorder(Node node) {
-        if(node == nill) {
+    private void inorder(Node<T> node) {
+        if(node == nil) {
             return;
         }
         inorder(node.left);
         System.out.print(node.data);
         inorder(node.right);
     }
+
 }
