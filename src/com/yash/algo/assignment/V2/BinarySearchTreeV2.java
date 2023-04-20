@@ -145,7 +145,8 @@ public class BinarySearchTreeV2<T extends Comparable<T>> implements DataStructur
         if(node == null) {
             return 0;
         }
-        return Math.max(manageHeight(node.left), manageHeight(node.right)) + 1;
+        node.height = Math.max(manageHeight(node.left), manageHeight(node.right)) + 1;
+        return node.height;
     }
 
     private Node<T> treeMinimum(Node<T> node) {
@@ -160,6 +161,9 @@ public class BinarySearchTreeV2<T extends Comparable<T>> implements DataStructur
 
     @Override
     public int height() {
+        if (root == null) {
+            return 0;
+        }
         return root.height;
     }
 }

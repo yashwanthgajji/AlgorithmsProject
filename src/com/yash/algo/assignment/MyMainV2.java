@@ -23,7 +23,7 @@ public class MyMainV2 {
                 case 1 -> dataStructureV2 = new BinarySearchTreeV2<>();
                 case 2 -> dataStructureV2 = new SplayTreeV2<>();
 //                case 3 -> dataStructureV2 = new SkipListV1<>();
-//                case 4 -> dataStructure = new RedBlackTreeV1();
+                case 4 -> dataStructureV2 = new RedBlackTreeV2<>();
                 default -> System.out.println("Enter the correct value for Data Structure");
             }
             if (dataStructureV2 != null) {
@@ -62,7 +62,7 @@ public class MyMainV2 {
                 case 1 -> dataStructureV2 = new BinarySearchTreeV2<>();
                 case 2 -> dataStructureV2 = new SplayTreeV2<>();
 //                case 3 -> dataStructureV2 = new SkipListV2<>();
-//                case 4 -> dataStructure = new RedBlackTreeV1();
+                case 4 -> dataStructureV2 = new RedBlackTreeV2<>();
                 default -> System.out.println("Enter the correct value for Data Structure");
             }
             if (dataStructureV2 != null) {
@@ -101,7 +101,7 @@ public class MyMainV2 {
                 case 1 -> dataStructureV2 = new BinarySearchTreeV2<>();
                 case 2 -> dataStructureV2 = new SplayTreeV2<>();
 //                case 3 -> dataStructureV2 = new SkipListV2<>();
-//                case 4 -> dataStructure = new RedBlackTreeV1();
+                case 4 -> dataStructureV2 = new RedBlackTreeV2<>();
                 default -> System.out.println("Enter the correct value for Data Structure");
             }
             if (dataStructureV2 != null) {

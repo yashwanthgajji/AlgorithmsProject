@@ -180,11 +180,15 @@ public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> 
         if(node == null) {
             return 0;
         }
-        return Math.max(manageHeight(node.left), manageHeight(node.right)) + 1;
+        node.height = Math.max(manageHeight(node.left), manageHeight(node.right)) + 1;
+        return node.height;
     }
 
     @Override
     public int height() {
+        if (root == null) {
+            return 0;
+        }
         return root.height;
     }
 
