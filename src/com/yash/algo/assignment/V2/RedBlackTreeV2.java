@@ -1,15 +1,17 @@
-package com.yash.algo.assignment.V1;
+package com.yash.algo.assignment.V2;
 
 import com.yash.algo.assignment.ElementNotFoundException;
 
-public class RedBlackTreeV1<T extends Comparable<T>> implements DataStructureV1<T> {
+public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<T> {
     static class Node<T extends Comparable<T>>{
         T data;
+        int height;
         Node<T> left;
         Node<T> right;
         Node<T> parent;
         int color; //1-RED, 0-BLACK
         Node() {
+            height = 0;
             left = null;
             right = null;
             parent = null;
@@ -17,6 +19,7 @@ public class RedBlackTreeV1<T extends Comparable<T>> implements DataStructureV1<
         }
         Node(T d) {
             data = d;
+            height = 0;
             left = null;
             right = null;
             parent = null;
@@ -26,7 +29,7 @@ public class RedBlackTreeV1<T extends Comparable<T>> implements DataStructureV1<
 
     private Node<T> root;
     private final Node<T> nil;
-    public RedBlackTreeV1() {
+    public RedBlackTreeV2() {
         nil = new Node<>();
         nil.color = 0;
         root = nil;
@@ -90,6 +93,14 @@ public class RedBlackTreeV1<T extends Comparable<T>> implements DataStructureV1<
         return search(node.right, key);
     }
 
+    public int manageHeight(Node<T> node) {
+        if(node == null) {
+            return 0;
+        }
+        node.height = Math.max(manageHeight(node.left), manageHeight(node.right)) + 1;
+        return node.height;
+    }
+
     @Override
     public void insert(T key) {
         if (search(root, key) != null) {
@@ -116,6 +127,7 @@ public class RedBlackTreeV1<T extends Comparable<T>> implements DataStructureV1<
         }
         z.color = 1;
         insert_fix(z);
+        manageHeight(root);
     }
 
     private void insert_fix(Node<T> z) {
@@ -212,6 +224,7 @@ public class RedBlackTreeV1<T extends Comparable<T>> implements DataStructureV1<
         if (yOriginalColor == 0) {
             deleteFix(x);
         }
+        manageHeight(root);
     }
 
     private void deleteFix(Node<T> x) {
@@ -270,18 +283,10 @@ public class RedBlackTreeV1<T extends Comparable<T>> implements DataStructureV1<
     }
 
     @Override
-    public void ascendingOrder() {
-        inorder(root);
-        System.out.println();
-    }
-
-    private void inorder(Node<T> node) {
-        if(node == nil) {
-            return;
+    public int height() {
+        if (root == nil || root == null) {
+            return 0;
         }
-        inorder(node.left);
-        System.out.print(node.data);
-        inorder(node.right);
+        return root.height;
     }
-
 }
