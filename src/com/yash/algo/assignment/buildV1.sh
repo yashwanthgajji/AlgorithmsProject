@@ -1,1 +1,0 @@
-javac MyMainV1.java
