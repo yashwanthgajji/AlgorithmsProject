@@ -56,6 +56,7 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
         }
         y.left = x;
         x.parent = y;
+        manageUpperHeight(x);
     }
 
     private void rightRotate(Node<T> x) {
@@ -74,6 +75,7 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
         }
         y.right = x;
         x.parent = y;
+        manageUpperHeight(x);
     }
 
     private Node<T> search(Node<T> node, T key) {
@@ -87,14 +89,6 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
             return search(node.left, key);
         }
         return search(node.right, key);
-    }
-
-    public int manageHeight(Node<T> node) {
-        if(node == null) {
-            return 0;
-        }
-        node.height = Math.max(manageHeight(node.left), manageHeight(node.right)) + 1;
-        return node.height;
     }
 
     @Override
@@ -122,8 +116,8 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
             y.right = z;
         }
         z.color = 1;
+        manageUpperHeight(z);
         insert_fix(z);
-        manageHeight(root);
     }
 
     private void insert_fix(Node<T> z) {
@@ -174,6 +168,7 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
             u.parent.right = v;
         }
         v.parent = u.parent;
+        manageUpperHeight(v);
     }
 
     private Node<T> treeMinimum(Node<T> node) {
@@ -220,7 +215,6 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
         if (yOriginalColor == 0) {
             deleteFix(x);
         }
-        manageHeight(root);
     }
 
     private void deleteFix(Node<T> x) {
@@ -276,6 +270,22 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
             }
         }
         x.color = 0;
+    }
+
+    public void manageUpperHeight(Node<T> node) {
+        if(node == nil) {
+            return;
+        }
+        int a = 0;
+        int b = 0;
+        if(node.left != nil) {
+            a = node.left.height;
+        }
+        if(node.right != nil) {
+            b = node.right.height;
+        }
+        node.height = Math.max(a, b) + 1;
+        manageUpperHeight(node.parent);
     }
 
     @Override

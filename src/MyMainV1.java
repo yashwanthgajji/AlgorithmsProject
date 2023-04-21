@@ -6,7 +6,7 @@ public class MyMainV1 {
 
     public static void main(String[] args) {
         double startTime = System.nanoTime();
-//        calculateForIntegerData(args);
+        calculateForIntegerData(args);
 //        calculateForDoubleData(args);
 //        calculateForStringData(args);
         double stopTime = System.nanoTime();

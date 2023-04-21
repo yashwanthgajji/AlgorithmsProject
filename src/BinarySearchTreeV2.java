@@ -42,14 +42,14 @@ public class BinarySearchTreeV2<T extends Comparable<T>> implements DataStructur
 
     public void insert(T key) {
         if(search(root, key) == null) {
-            root = insertRec(root, key);
+            insert(root, key);
         }
-        manageHeight(root);
     }
 
     private void insert(Node<T> node, T key) {
         if(root == null) {
             root = new Node<>(key);
+            manageUpperHeight(root);
             return;
         }
         Node<T> p = root;
@@ -70,22 +70,7 @@ public class BinarySearchTreeV2<T extends Comparable<T>> implements DataStructur
         } else {
             q.right = p;
         }
-    }
-
-    private Node<T> insertRec(Node<T> node, T key) {
-        if(node == null) {
-            return new Node<>(key);
-        }
-        if(node.data.compareTo(key) > 0) {
-            Node<T> temp = insertRec(node.left, key);
-            temp.parent = node;
-            node.left = temp;
-        } else {
-            Node<T> temp = insertRec(node.right, key);
-            temp.parent = node;
-            node.right = temp;
-        }
-        return node;
+        manageUpperHeight(p);
     }
 
     private Node<T> search(Node<T> node, T key) {
@@ -112,6 +97,7 @@ public class BinarySearchTreeV2<T extends Comparable<T>> implements DataStructur
         if(b != null) {
             b.parent = a.parent;
         }
+        manageUpperHeight(b);
     }
 
     public void delete(T key) throws ElementNotFoundException {
@@ -134,15 +120,22 @@ public class BinarySearchTreeV2<T extends Comparable<T>> implements DataStructur
             q.left = p.left;
             q.left.parent = q;
         }
-        manageHeight(root);
     }
 
-    public int manageHeight(Node<T> node) {
+    public void manageUpperHeight(Node<T> node) {
         if(node == null) {
-            return 0;
+            return;
         }
-        node.height = Math.max(manageHeight(node.left), manageHeight(node.right)) + 1;
-        return node.height;
+        int a = 0;
+        int b = 0;
+        if(node.left != null) {
+            a = node.left.height;
+        }
+        if(node.right != null) {
+            b = node.right.height;
+        }
+        node.height = Math.max(a, b) + 1;
+        manageUpperHeight(node.parent);
     }
 
     private Node<T> treeMinimum(Node<T> node) {

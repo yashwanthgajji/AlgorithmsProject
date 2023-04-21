@@ -45,12 +45,12 @@ public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> 
         if(search(key) == null) {
             insert(root, key);
         }
-        manageHeight(root);
     }
 
     private void insert(Node<T> node, T key) {
         if(root == null) {
             root = new Node<>(key);
+            manageUpperHeight(root);
             splay(root);
             return;
         }
@@ -72,6 +72,7 @@ public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> 
         } else {
             q.right = p;
         }
+        manageUpperHeight(p);
         splay(p);
     }
 
@@ -114,6 +115,7 @@ public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> 
             q.left = p;
             p.parent = q;
         }
+        manageUpperHeight(p);
     }
 
     private void rightRotate(Node<T> p) {
@@ -134,6 +136,23 @@ public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> 
             q.right = p;
             p.parent = q;
         }
+        manageUpperHeight(p);
+    }
+
+    public void manageUpperHeight(Node<T> node) {
+        if(node == null) {
+            return;
+        }
+        int a = 0;
+        int b = 0;
+        if(node.left != null) {
+            a = node.left.height;
+        }
+        if(node.right != null) {
+            b = node.right.height;
+        }
+        node.height = Math.max(a, b) + 1;
+        manageUpperHeight(node.parent);
     }
 
     private void splay(Node<T> node) {
@@ -168,16 +187,8 @@ public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> 
             root = leftMax;
             leftMax.right = rightSubTree;
             rightSubTree.parent = leftMax;
+            manageUpperHeight(root);
         }
-        manageHeight(root);
-    }
-
-    public int manageHeight(Node<T> node) {
-        if(node == null) {
-            return 0;
-        }
-        node.height = Math.max(manageHeight(node.left), manageHeight(node.right)) + 1;
-        return node.height;
     }
 
     @Override
