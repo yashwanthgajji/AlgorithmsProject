@@ -1,22 +1,23 @@
-package com.yash.algo.assignment.V1;
-
+package com.yash.algo.assignment.V2;
 
 import com.yash.algo.assignment.ElementNotFoundException;
-import com.yash.algo.assignment.V1.DataStructureV1;
 
-public class SplayTreeV1<T extends Comparable<T>> implements DataStructureV1<T> {
+public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> {
     static class Node<T extends Comparable<T>> {
         T data;
+        int height;
         Node<T> left;
         Node<T> right;
         Node<T> parent;
         Node() {
+            height = 0;
             left = null;
             right = null;
             parent = null;
         }
         Node(T key) {
             data = key;
+            height = 0;
             left = null;
             right = null;
             parent = null;
@@ -25,12 +26,11 @@ public class SplayTreeV1<T extends Comparable<T>> implements DataStructureV1<T> 
 
     private Node<T> root;
 
-    public SplayTreeV1() {
+    public SplayTreeV2() {
         root = null;
     }
 
-    @Override
-    public void ascendingOrder() {
+    public void inorder() {
         inorder(root);
         System.out.println();
     }
@@ -49,6 +49,7 @@ public class SplayTreeV1<T extends Comparable<T>> implements DataStructureV1<T> 
         if(search(key) == null) {
             insert(root, key);
         }
+        manageHeight(root);
     }
 
     private void insert(Node<T> node, T key) {
@@ -172,6 +173,23 @@ public class SplayTreeV1<T extends Comparable<T>> implements DataStructureV1<T> 
             leftMax.right = rightSubTree;
             rightSubTree.parent = leftMax;
         }
+        manageHeight(root);
+    }
+
+    public int manageHeight(Node<T> node) {
+        if(node == null) {
+            return 0;
+        }
+        node.height = Math.max(manageHeight(node.left), manageHeight(node.right)) + 1;
+        return node.height;
+    }
+
+    @Override
+    public int height() {
+        if (root == null) {
+            return 0;
+        }
+        return root.height;
     }
 
     private Node<T> treeMaximum(Node<T> node) {

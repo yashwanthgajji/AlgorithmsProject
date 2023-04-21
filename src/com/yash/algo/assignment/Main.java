@@ -1,11 +1,17 @@
 package com.yash.algo.assignment;
 
 import com.yash.algo.assignment.V1.DataStructureV1;
+import com.yash.algo.assignment.V1.RedBlackTreeV1;
+import com.yash.algo.assignment.V1.SkipListV1;
 import com.yash.algo.assignment.V1.SplayTreeV1;
+import com.yash.algo.assignment.V2.BinarySearchTreeV2;
+import com.yash.algo.assignment.V2.DataStructureV2;
+import com.yash.algo.assignment.V2.RedBlackTreeV2;
+import com.yash.algo.assignment.V2.SplayTreeV2;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ElementNotFoundException {
 
 //        Car<Integer> car1 = new Car<Integer>("Camry", 293393934, 102929383, 8938822, 2345686);
 //        System.out.println(car1.toString());
@@ -14,32 +20,35 @@ public class Main {
 //        Car<String> car3 = new Car<String>("Camry", 293393934, "102929383", "8938822", "2345686");
 //        System.out.println(car3.toString());
 
-//        SplayTree<Integer> bst = new SplayTree<>();
-//        bst.insert(6);
-//        bst.inorder();
-//        bst.insert(3);
-//        bst.inorder();
-//        bst.insert(5);
-//        bst.inorder();
-//        bst.insert(4);
-//        bst.inorder();
-//        bst.insert(1);
-//        bst.inorder();
-//        bst.insert(8);
-//        bst.inorder();
-//        bst.insert(7);
-//        bst.inorder();
-//        try {
-//            bst.delete(6);
-//        } catch (ElementNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        bst.inorder();
-//        try {
-//            bst.delete(9);
-//        } catch (ElementNotFoundException e) {
-//            System.out.println(e);
-//        }
+        DataStructureV2<Integer> bst = new SplayTreeV2<>();
+        bst.insert(6);
+        System.out.println(bst.height());
+        bst.insert(3);
+        System.out.println(bst.height());
+        bst.insert(5);
+        System.out.println(bst.height());
+        bst.insert(4);
+        System.out.println(bst.height());
+        bst.insert(1);
+        System.out.println(bst.height());
+        bst.insert(8);
+        System.out.println(bst.height());
+        bst.insert(7);
+        System.out.println(bst.height());
+        try {
+            bst.delete(6);
+        } catch (ElementNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println(bst.height());
+        try {
+            bst.delete(9);
+        } catch (ElementNotFoundException e) {
+            throw new ElementNotFoundException(9);
+        }
+        System.out.println(bst.height());
+        bst.insert(7);
+        System.out.println(bst.height());
 
         DataStructureV1<String> bstString = new SplayTreeV1<>();
 //        bstString.insert("Hello");
@@ -128,24 +137,24 @@ public class Main {
 //            System.out.println(e);
 //        }
 
-//        SkipList<String> skipListString = new SkipList<>(5);
+//        RedBlackTreeV1<String> skipListString = new RedBlackTreeV1<>();
 //        skipListString.insert("Hello String");
-//        skipListString.printSkipList();
+//        skipListString.ascendingOrder();
 //        skipListString.insert("I know it");
-//        skipListString.printSkipList();
+//        skipListString.ascendingOrder();
 //        skipListString.insert("I know it");
-//        skipListString.printSkipList();
+//        skipListString.ascendingOrder();
 //        skipListString.insert("You are it");
-//        skipListString.printSkipList();
+//        skipListString.ascendingOrder();
 //        try {
 //            skipListString.delete("I know it");
 //        } catch (ElementNotFoundException e) {
 //            e.printStackTrace();
 //        }
-//        skipListString.printSkipList();
+//        skipListString.ascendingOrder();
 //        skipListString.insert("Hello Strong");
-//        skipListString.printSkipList();
+//        skipListString.ascendingOrder();
 //        skipListString.insert("A wood pecker got killed");
-//        skipListString.printSkipList();
+//        skipListString.ascendingOrder();
     }
 }

@@ -1,20 +1,23 @@
-package com.yash.algo.assignment.V1;
+package com.yash.algo.assignment.V2;
 
 import com.yash.algo.assignment.ElementNotFoundException;
 
-public class BinarySearchTreeV1<T extends Comparable<T>> implements DataStructureV1<T> {
+public class BinarySearchTreeV2<T extends Comparable<T>> implements DataStructureV2<T> {
     static class Node<T extends Comparable<T>> {
         T data;
+        int height;
         Node<T> left;
         Node<T> right;
         Node<T> parent;
         Node() {
+            height = 0;
             left = null;
             right = null;
             parent = null;
         }
         Node(T key) {
             data = key;
+            height = 0;
             left = null;
             right = null;
             parent = null;
@@ -23,12 +26,11 @@ public class BinarySearchTreeV1<T extends Comparable<T>> implements DataStructur
 
     private Node<T> root;
 
-    public BinarySearchTreeV1() {
+    public BinarySearchTreeV2() {
         root = null;
     }
 
-    @Override
-    public void ascendingOrder() {
+    public void inorder() {
         inorder(root);
         System.out.println();
     }
@@ -46,6 +48,7 @@ public class BinarySearchTreeV1<T extends Comparable<T>> implements DataStructur
         if(search(root, key) == null) {
             root = insertRec(root, key);
         }
+        manageHeight(root);
     }
 
     private void insert(Node<T> node, T key) {
@@ -135,6 +138,15 @@ public class BinarySearchTreeV1<T extends Comparable<T>> implements DataStructur
             q.left = p.left;
             q.left.parent = q;
         }
+        manageHeight(root);
+    }
+
+    public int manageHeight(Node<T> node) {
+        if(node == null) {
+            return 0;
+        }
+        node.height = Math.max(manageHeight(node.left), manageHeight(node.right)) + 1;
+        return node.height;
     }
 
     private Node<T> treeMinimum(Node<T> node) {
@@ -145,5 +157,13 @@ public class BinarySearchTreeV1<T extends Comparable<T>> implements DataStructur
             return node;
         }
         return treeMinimum(node.left);
+    }
+
+    @Override
+    public int height() {
+        if (root == null) {
+            return 0;
+        }
+        return root.height;
     }
 }

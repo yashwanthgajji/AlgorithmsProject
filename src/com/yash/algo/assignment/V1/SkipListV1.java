@@ -6,7 +6,7 @@ import com.yash.algo.assignment.V1.DataStructureV1;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SkipListV1<T extends Comparable<T>> extends DataStructureV1<T> {
+public class SkipListV1<T extends Comparable<T>> implements DataStructureV1<T> {
     static class Node<T extends Comparable<T>> {
         T data;
         Node<T> next;

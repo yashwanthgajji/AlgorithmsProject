@@ -4,7 +4,7 @@ import com.yash.algo.assignment.ElementNotFoundException;
 
 import java.util.HashSet;
 
-public class HashTableV1<T extends Comparable<T>> extends DataStructureV1<T> {
+public class HashTableV1<T extends Comparable<T>> implements DataStructureV1<T> {
 
     HashSet<T> hashSet;
 
