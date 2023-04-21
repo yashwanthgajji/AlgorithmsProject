@@ -1,1 +1,0 @@
-java mymainV2 "$1" "$2"

@@ -1,0 +1,1 @@
+java -jar MyProject2.jar "$1" "$2"
