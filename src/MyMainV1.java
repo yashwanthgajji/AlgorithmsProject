@@ -10,7 +10,7 @@ public class MyMainV1 {
 //        calculateForDoubleData(args);
 //        calculateForStringData(args);
         double stopTime = System.nanoTime();
-        System.out.println("Time taken is : " + (stopTime - startTime)/1000000.0);
+        System.out.println("Time taken is : " + (stopTime - startTime)/1000000.0 + " milliseconds\n");
     }
 
     private static void calculateForIntegerData(String[] args) {
@@ -24,13 +24,21 @@ public class MyMainV1 {
                 case 2 -> dataStructureV1 = new SplayTreeV1<>();
                 case 3 -> dataStructureV1 = new SkipListV1<>();
                 case 4 -> dataStructureV1 = new RedBlackTreeV1<>();
-                default -> System.out.println("Enter the correct value for Data Structure");
+                default -> System.out.println("""
+                        Enter the correct value for Data Structure
+                        0. Hash Table
+                        1. Binary Search Tree
+                        2. Splay Tree
+                        3. Skip List
+                        4. Red Black Tree""");
             }
             if (dataStructureV1 != null) {
                 File file = new File(inputFileName);
+                int lineNumber = 0;
                 try {
                     Scanner scanner = new Scanner(file);
                     while (scanner.hasNextLine()) {
+                        lineNumber++;
                         String data = scanner.nextLine();
                         String[] inputs = data.split(" ", 2);
                         int operation = Integer.parseInt((inputs[0]));
@@ -42,12 +50,16 @@ public class MyMainV1 {
                         }
                     }
                     scanner.close();
-                } catch (FileNotFoundException | ElementNotFoundException e) {
-                    e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    System.out.println(e);
+                } catch (ElementNotFoundException e) {
+                    try {
+                        throw new ElementNotFoundException(lineNumber);
+                    } catch (ElementNotFoundException ex) {
+                        System.out.println(ex);
+                    }
                 }
                 dataStructureV1.ascendingOrder();
-            } else {
-                System.out.println("Enter correct Data Structure");
             }
         }
     }
@@ -63,13 +75,21 @@ public class MyMainV1 {
                 case 2 -> dataStructureV1 = new SplayTreeV1<>();
                 case 3 -> dataStructureV1 = new SkipListV1<>();
                 case 4 -> dataStructureV1 = new RedBlackTreeV1<>();
-                default -> System.out.println("Enter the correct value for Data Structure");
+                default -> System.out.println("""
+                        Enter the correct value for Data Structure
+                        0. Hash Table
+                        1. Binary Search Tree
+                        2. Splay Tree
+                        3. Skip List
+                        4. Red Black Tree""");
             }
             if (dataStructureV1 != null) {
                 File file = new File(inputFileName);
+                int lineNumber = 0;
                 try {
                     Scanner scanner = new Scanner(file);
                     while (scanner.hasNextLine()) {
+                        lineNumber++;
                         String data = scanner.nextLine();
                         String[] inputs = data.split(" ", 2);
                         int operation = Integer.parseInt((inputs[0]));
@@ -81,12 +101,16 @@ public class MyMainV1 {
                         }
                     }
                     scanner.close();
-                } catch (FileNotFoundException | ElementNotFoundException e) {
-                    e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    System.out.println(e);
+                } catch (ElementNotFoundException e) {
+                    try {
+                        throw new ElementNotFoundException(lineNumber);
+                    } catch (ElementNotFoundException ex) {
+                        System.out.println(ex);
+                    }
                 }
                 dataStructureV1.ascendingOrder();
-            } else {
-                System.out.println("Enter correct Data Structure");
             }
         }
     }
@@ -102,13 +126,21 @@ public class MyMainV1 {
                 case 2 -> dataStructureV1 = new SplayTreeV1<>();
                 case 3 -> dataStructureV1 = new SkipListV1<>();
                 case 4 -> dataStructureV1 = new RedBlackTreeV1<>();
-                default -> System.out.println("Enter the correct value for Data Structure");
+                default -> System.out.println("""
+                        Enter the correct value for Data Structure
+                        0. Hash Table
+                        1. Binary Search Tree
+                        2. Splay Tree
+                        3. Skip List
+                        4. Red Black Tree""");
             }
             if (dataStructureV1 != null) {
                 File file = new File(inputFileName);
+                int lineNumber = 0;
                 try {
                     Scanner scanner = new Scanner(file);
                     while (scanner.hasNextLine()) {
+                        lineNumber++;
                         String data = scanner.nextLine();
                         String[] inputs = data.split(" ", 2);
                         int operation = Integer.parseInt((inputs[0]));
@@ -120,12 +152,16 @@ public class MyMainV1 {
                         }
                     }
                     scanner.close();
-                } catch (FileNotFoundException | ElementNotFoundException e) {
-                    e.printStackTrace();
+                } catch (FileNotFoundException e) {
+                    System.out.println(e);
+                } catch (ElementNotFoundException e) {
+                    try {
+                        throw new ElementNotFoundException(lineNumber);
+                    } catch (ElementNotFoundException ex) {
+                        System.out.println(ex);
+                    }
                 }
                 dataStructureV1.ascendingOrder();
-            } else {
-                System.out.println("Enter correct Data Structure");
             }
         }
     }

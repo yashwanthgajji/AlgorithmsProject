@@ -144,10 +144,11 @@ public class SkipListV1<T extends Comparable<T>> implements DataStructureV1<T> {
 
     @Override
     public void ascendingOrder() {
+        System.out.println("Ascending order of data:");
         Level<T> zeroLevel = levels[0];
         Node<T> p = zeroLevel.start.next;
         while (p != zeroLevel.end) {
-            System.out.println(p.data+" ");
+            System.out.print(p.data+" ");
             p = p.next;
         }
         System.out.println();

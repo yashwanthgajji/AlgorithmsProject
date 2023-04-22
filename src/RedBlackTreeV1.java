@@ -267,6 +267,7 @@ public class RedBlackTreeV1<T extends Comparable<T>> implements DataStructureV1<
 
     @Override
     public void ascendingOrder() {
+        System.out.println("Ascending order of data:");
         inorder(root);
         System.out.println();
     }
@@ -276,7 +277,7 @@ public class RedBlackTreeV1<T extends Comparable<T>> implements DataStructureV1<
             return;
         }
         inorder(node.left);
-        System.out.print(node.data);
+        System.out.print(node.data + " ");
         inorder(node.right);
     }
 

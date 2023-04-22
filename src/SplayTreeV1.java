@@ -25,6 +25,7 @@ public class SplayTreeV1<T extends Comparable<T>> implements DataStructureV1<T> 
 
     @Override
     public void ascendingOrder() {
+        System.out.println("Ascending order of data:");
         inorder(root);
         System.out.println();
     }

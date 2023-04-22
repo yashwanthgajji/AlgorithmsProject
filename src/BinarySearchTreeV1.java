@@ -25,6 +25,7 @@ public class BinarySearchTreeV1<T extends Comparable<T>> implements DataStructur
 
     @Override
     public void ascendingOrder() {
+        System.out.println("Ascending order of data:");
         inorder(root);
         System.out.println();
     }
@@ -34,7 +35,7 @@ public class BinarySearchTreeV1<T extends Comparable<T>> implements DataStructur
             return;
         }
         inorder(node.left);
-        System.out.print(node.data);
+        System.out.print(node.data + " ");
         inorder(node.right);
     }
 
