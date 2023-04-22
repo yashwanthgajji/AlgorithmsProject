@@ -1,0 +1,47 @@
+------------Instructions to run the program
+
+- open the command line and navigate to src folder
+
+- run the command "buildV1.sh" (or) "buildV2.sh" to generate the .class files and make sure it runs without any errors
+    * buildV1.sh is to generate the build of class files of version 1 which is to find the ascending order and the time taken to run the program
+    * buildV2.sh is to generate the build of class files of version 2 which is to find the height of the tree
+
+- now we are ready to give inputs. Uncomment the lines 9, 10 or 11 in "MyMainV1.java" based on the kind of input you intend to give.
+  line 9 -> Integer Input
+  line 10 -> Double Input
+  line 11 -> String Input
+
+- run the program using the ./<fileName> <DataStructure to be used> <input file name>
+  Ex : ./runV1.sh 3 input1
+
+  The list of data structure and their corresponding integer is as follows:
+  0. Hash Table
+  1. Binary Search Tree
+  2. Splay Tree
+  3. Skip List
+  4. Red Black Tree
+
+
+------------------Comparison
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------Contribution
+Yashwanth:
+-
+
+
+
+
+Chandan:
+-
