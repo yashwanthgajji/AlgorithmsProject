@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class MyMainV2 {
+
     public static void main(String[] args) {
         calculateForIntegerData(args);
 //        calculateForDoubleData(args);

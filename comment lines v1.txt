@@ -1,0 +1,3 @@
+line number to uncomment to test the int data type: 9
+line number to uncomment to test the double data type: 10
+line number to uncomment to test the string data type: 11
