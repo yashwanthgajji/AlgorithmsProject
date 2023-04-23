@@ -167,8 +167,12 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
         } else {
             u.parent.right = v;
         }
-        v.parent = u.parent;
-        manageUpperHeight(v);
+        if (v != null) {
+            v.parent = u.parent;
+            manageUpperHeight(v);
+        } else {
+            manageUpperHeight(u.parent);
+        }
     }
 
     private Node<T> treeMinimum(Node<T> node) {

@@ -96,8 +96,10 @@ public class BinarySearchTreeV2<T extends Comparable<T>> implements DataStructur
         }
         if(b != null) {
             b.parent = a.parent;
+            manageUpperHeight(b);
+        } else {
+            manageUpperHeight(a.parent);
         }
-        manageUpperHeight(b);
     }
 
     public void delete(T key) throws ElementNotFoundException {
