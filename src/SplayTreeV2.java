@@ -156,11 +156,45 @@ public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> 
     }
 
     private void splay(Node<T> node) {
-        while (node.parent != null) {
-            if(node.parent.left == node) {
-                rightRotate(node.parent);
+        Node<T> x = node;
+        Node<T> y = node.parent;
+        Node<T> z = null;
+        if (y != null) {
+            z = node.parent.parent;
+        } else {
+            z = null;
+        }
+        while (y != null) {
+            if (z == null) {
+                if (y.left == x) {
+                    rightRotate(y);
+                } else {
+                    leftRotate(y);
+                }
             } else {
-                leftRotate(node.parent);
+                if (z.left == y) {
+                    if (y.left == x) {
+                        rightRotate(z);
+                        rightRotate(y);
+                    } else {
+                        leftRotate(y);
+                        rightRotate(z);
+                    }
+                } else {
+                    if(y.right == x) {
+                        leftRotate(z);
+                        leftRotate(y);
+                    } else {
+                        rightRotate(y);
+                        leftRotate(z);
+                    }
+                }
+            }
+            y = x.parent;
+            if (y != null) {
+                z = y.parent;
+            } else {
+                z = null;
             }
         }
     }
