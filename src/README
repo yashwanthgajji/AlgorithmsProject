@@ -51,12 +51,12 @@ instructions to run Version 2:
 
     output:
 
-    Height of the tree: 1
-    Height of the tree: 2
-    Height of the tree: 3
-    Height of the tree: 4
-    Height of the tree: 4
-    Height of the tree: 4
+    1
+    2
+    3
+    4
+    4
+    4
 
 
 ************* Comparison of Data structures based on their execution time
@@ -96,8 +96,6 @@ Red Black Tree:
 Ascending order of data:
 3 4 5 6
 Time taken is : 18.37575 milliseconds
-
-From the execution times we can see that BST is taking less time execute compared to other data structures
 
 **************** Contribution
 Yashwanth:
