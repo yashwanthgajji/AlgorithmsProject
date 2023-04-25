@@ -42,7 +42,7 @@ public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> 
 
     @Override
     public void insert(T key) {
-        if(search(key) == null) {
+        if(search(root, key, false) == null) {
             insert(root, key);
         }
     }
@@ -77,10 +77,10 @@ public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> 
     }
 
     public Node<T> search(T key) {
-        return search(root, key);
+        return search(root, key, false);
     }
 
-    private Node<T> search(Node<T> node, T key) {
+    private Node<T> search(Node<T> node, T key, boolean isDelete) {
         Node<T> p = node;
         Node<T> q = node;
         while (p != null) {
@@ -95,7 +95,9 @@ public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> 
                 p  =p.right;
             }
         }
-        splay(q);
+        if (isDelete && q !=null) {
+            splay(q);
+        }
         return null;
     }
 
@@ -203,7 +205,7 @@ public class SplayTreeV2<T extends Comparable<T>> implements DataStructureV2<T> 
 
     @Override
     public void delete(T key) throws ElementNotFoundException {
-        Node<T> p = search(key);
+        Node<T> p = search(root, key, true);
         if (p == null) {
             throw new ElementNotFoundException();
         }
