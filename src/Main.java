@@ -9,7 +9,7 @@ public class Main {
 //        MyMainV1.main(new String[]{"3", "input1"});
 //        MyMainV1.main(new String[]{"4", "input1"});
 //
-        MyMainV2.main(new String[]{"1", "input1"});
+        MyMainV2.main(new String[]{"1", "src\\input3"});
 //        MyMainV2.main(new String[]{"2", "input1"});
 //        MyMainV2.main(new String[]{"3", "input1"});
 

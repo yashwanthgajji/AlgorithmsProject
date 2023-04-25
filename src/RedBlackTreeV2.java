@@ -211,9 +211,9 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
             } else {
                 x.parent = y;
             }
-            transplant(z, y);
             y.left = z.left;
             y.left.parent = y;
+            transplant(z, y);
             y.color = z.color;
         }
         if (yOriginalColor == 0) {

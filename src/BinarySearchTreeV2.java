@@ -118,9 +118,9 @@ public class BinarySearchTreeV2<T extends Comparable<T>> implements DataStructur
                 q.right = p.right;
                 q.right.parent = q;
             }
-            transplant(p, q);
             q.left = p.left;
             q.left.parent = q;
+            transplant(p, q);
         }
     }
 
