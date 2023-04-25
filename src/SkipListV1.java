@@ -30,7 +30,7 @@ public class SkipListV1<T extends Comparable<T>> implements DataStructureV1<T> {
     }
 
     private final int numOfLevels;
-    private Level<T>[] levels;
+    private ArrayList<Level<T>> levels;
 
     public SkipListV1() {
 //        this.numOfLevels = (int) (Math.log(numOfElements) / Math.log(2));
@@ -39,12 +39,12 @@ public class SkipListV1<T extends Comparable<T>> implements DataStructureV1<T> {
     }
 
     private void initializeLevels() {
-        levels = new Level[numOfLevels];
+        levels = new ArrayList<>(numOfLevels);
         for(int i=0; i < this.numOfLevels; i++) {
-            levels[i] = new Level<>(i);
+            levels.add(new Level<>(i));
             if(i != 0) {
-                levels[i].start.lower = levels[i-1].start;
-                levels[i].end.lower = levels[i-1].end;
+                levels.get(i).start.lower = levels.get(i-1).start;
+                levels.get(i).end.lower = levels.get(i-1).end;
             }
         }
     }
@@ -65,9 +65,9 @@ public class SkipListV1<T extends Comparable<T>> implements DataStructureV1<T> {
 
     private Node<T> floor(T key) {
         int currLevel = numOfLevels - 1;
-        Node<T> p = levels[currLevel].start;
+        Node<T> p = levels.get(currLevel).start;
         while (true) {
-            if (p.next == levels[currLevel].end || p.next.data.compareTo(key) >= 0){
+            if (p.next == levels.get(currLevel).end || p.next.data.compareTo(key) >= 0){
                 if(p.lower == null) {
                     return p;
                 }
@@ -82,9 +82,9 @@ public class SkipListV1<T extends Comparable<T>> implements DataStructureV1<T> {
     private ArrayList<Node<T>> predecessors(T key) {
         ArrayList<Node<T>> preds = new ArrayList<>();
         int currLevel = numOfLevels - 1;
-        Node<T> p = levels[currLevel].start;
+        Node<T> p = levels.get(currLevel).start;
         while (true) {
-             if (p.next == levels[currLevel].end || p.next.data.compareTo(key) >= 0){
+             if (p.next == levels.get(currLevel).end || p.next.data.compareTo(key) >= 0){
                 preds.add(p);
                 if(p.lower != null) {
                     p = p.lower;
@@ -145,7 +145,7 @@ public class SkipListV1<T extends Comparable<T>> implements DataStructureV1<T> {
     @Override
     public void ascendingOrder() {
         System.out.println("Ascending order of data:");
-        Level<T> zeroLevel = levels[0];
+        Level<T> zeroLevel = levels.get(0);
         Node<T> p = zeroLevel.start.next;
         while (p != zeroLevel.end) {
             System.out.print(p.data + ", ");
@@ -157,7 +157,7 @@ public class SkipListV1<T extends Comparable<T>> implements DataStructureV1<T> {
     public void printSkipList() {
         for(int i = numOfLevels - 1; i>=0; i--) {
             System.out.print("Level " + i + ": ");
-            Level<T> currLevel = levels[i];
+            Level<T> currLevel = levels.get(i);
             Node<T> p = currLevel.start.next;
             while (p != currLevel.end) {
                 System.out.print(p.data+" ");
