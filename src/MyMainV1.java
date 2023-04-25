@@ -6,9 +6,9 @@ public class MyMainV1 {
 
     public static void main(String[] args) {
         double startTime = System.nanoTime();
-//        calculateForIntegerData(args);
+        calculateForIntegerData(args);
 //        calculateForDoubleData(args);
-        calculateForStringData(args);
+//        calculateForStringData(args);
         double stopTime = System.nanoTime();
         System.out.println("Time taken is : " + (stopTime - startTime)/1000000.0 + " milliseconds\n");
     }
@@ -40,7 +40,7 @@ public class MyMainV1 {
                     while (scanner.hasNextLine()) {
                         lineNumber++;
                         String data = scanner.nextLine();
-                        String[] inputs = data.split(" ", 2);
+                        String[] inputs = data.split("\t", 2);
                         int operation = Integer.parseInt((inputs[0]));
                         String key = inputs[1];
                         if(operation == 1) {
@@ -91,7 +91,7 @@ public class MyMainV1 {
                     while (scanner.hasNextLine()) {
                         lineNumber++;
                         String data = scanner.nextLine();
-                        String[] inputs = data.split(" ", 2);
+                        String[] inputs = data.split("\t", 2);
                         int operation = Integer.parseInt((inputs[0]));
                         String key = inputs[1];
                         if(operation == 1) {
@@ -142,7 +142,7 @@ public class MyMainV1 {
                     while (scanner.hasNextLine()) {
                         lineNumber++;
                         String data = scanner.nextLine();
-                        String[] inputs = data.split(" ", 2);
+                        String[] inputs = data.split("\t", 2);
                         int operation = Integer.parseInt((inputs[0]));
                         String key = inputs[1];
                         if(operation == 1) {

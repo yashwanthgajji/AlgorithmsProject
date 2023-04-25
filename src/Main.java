@@ -10,7 +10,7 @@ public class Main {
 //        MyMainV1.main(new String[]{"4", "input1"});
 //
 //        MyMainV2.main(new String[]{"1", "src\\input3"});
-        MyMainV2.main(new String[]{"2", "src\\input4"});
+        MyMainV2.main(new String[]{"2", "src\\input4.txt"});
 //        MyMainV2.main(new String[]{"4", "input1"});
 
     }

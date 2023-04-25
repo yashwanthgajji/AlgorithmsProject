@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class MyMainV2 {
 
     public static void main(String[] args) {
-//        calculateForIntegerData(args);
+        calculateForIntegerData(args);
 //        calculateForDoubleData(args);
-        calculateForStringData(args);
+//        calculateForStringData(args);
     }
 
     private static void calculateForIntegerData(String[] args) {
@@ -48,7 +48,7 @@ public class MyMainV2 {
                     while (scanner.hasNextLine()) {
                         lineNumber++;
                         String data = scanner.nextLine();
-                        String[] inputs = data.split(" ", 2);
+                        String[] inputs = data.split("\t", 2);
                         int operation = Integer.parseInt((inputs[0]));
                         String key = inputs[1];
                         if(operation == 1) {
@@ -110,7 +110,7 @@ public class MyMainV2 {
                     while (scanner.hasNextLine()) {
                         lineNumber++;
                         String data = scanner.nextLine();
-                        String[] inputs = data.split(" ", 2);
+                        String[] inputs = data.split("\t", 2);
                         int operation = Integer.parseInt((inputs[0]));
                         String key = inputs[1];
                         if(operation == 1) {
@@ -172,7 +172,7 @@ public class MyMainV2 {
                     while (scanner.hasNextLine()) {
                         lineNumber++;
                         String data = scanner.nextLine();
-                        String[] inputs = data.split(" ", 2);
+                        String[] inputs = data.split("\t", 2);
                         int operation = Integer.parseInt((inputs[0]));
                         String key = inputs[1];
                         if(operation == 1) {
