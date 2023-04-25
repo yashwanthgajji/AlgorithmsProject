@@ -5,9 +5,10 @@ Version 1:
 This version when executed gives the output of the tree in sorted order and the execution time.
 
 instructions to run Version 1:
+- Extract Gajji_Akella.tgz file.
 - open the command prompt/terminal.
 - check your present directory using the command "pwd"
-- navigate to "src" folder using cd ./<path to src folder>
+- navigate to "AlgoAssign/src" folder using cd ./<path to src folder>
 - enter "./buildV1.sh" to generate the .class files
 - now we are ready to give inputs. Uncomment the lines 9, 10 or 11 in "MyMainV1.java" based on the kind of input you intend to give
     * line 9 -> Integer Input
@@ -34,9 +35,10 @@ Version 2:
 This version when executed gives the height of the tree after each operation(insert/delete)
 
 instructions to run Version 2:
+- Extract Gajji_Akella.tgz file.
 - open the command prompt/terminal.
 - check your present directory using the command "pwd"
-- navigate to "src" folder using cd ./<path to src folder>
+- navigate to "AlgoAssign/src" folder using cd ./<path to src folder>
 - enter "./buildV2.sh" to generate the .class files
 - now we are ready to give inputs. Uncomment the lines 8, 9 or 10 in "MyMainV2.java" based on the kind of input you intend to give
     * line 8 -> Integer Input
