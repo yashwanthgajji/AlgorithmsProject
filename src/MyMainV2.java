@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class MyMainV2 {
 
     public static void main(String[] args) {
-        calculateForIntegerData(args);
+//        calculateForIntegerData(args);
 //        calculateForDoubleData(args);
-//        calculateForStringData(args);
+        calculateForStringData(args);
     }
 
     private static void calculateForIntegerData(String[] args) {
@@ -56,7 +56,7 @@ public class MyMainV2 {
                         } else {
                             dataStructureV2.delete(Integer.valueOf(key));
                         }
-                        System.out.println("Height of the tree: " + dataStructureV2.height());
+                        System.out.println(dataStructureV2.height());
                     }
                     scanner.close();
                 } catch (FileNotFoundException e) {
@@ -118,7 +118,7 @@ public class MyMainV2 {
                         } else {
                             dataStructureV2.delete(Double.valueOf(key));
                         }
-                        System.out.println("Height of the tree: " + dataStructureV2.height());
+                        System.out.println(dataStructureV2.height());
                     }
                     scanner.close();
                 } catch (FileNotFoundException e) {
@@ -180,7 +180,7 @@ public class MyMainV2 {
                         } else {
                             dataStructureV2.delete(key);
                         }
-                        System.out.println("Height of the tree: " + dataStructureV2.height());
+                        System.out.println(dataStructureV2.height());
                     }
                     scanner.close();
                 } catch (FileNotFoundException e) {

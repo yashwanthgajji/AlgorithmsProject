@@ -6,9 +6,9 @@ public class MyMainV1 {
 
     public static void main(String[] args) {
         double startTime = System.nanoTime();
-        calculateForIntegerData(args);
+//        calculateForIntegerData(args);
 //        calculateForDoubleData(args);
-//        calculateForStringData(args);
+        calculateForStringData(args);
         double stopTime = System.nanoTime();
         System.out.println("Time taken is : " + (stopTime - startTime)/1000000.0 + " milliseconds\n");
     }
