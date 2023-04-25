@@ -1,0 +1,110 @@
+********** Instructions to run the program
+
+Version 1:
+
+This version when executed gives the output of the tree in sorted order and the execution time.
+
+instructions to run Version 1:
+- open the command prompt/terminal.
+- check your present directory using the command "pwd"
+- navigate to "src" folder using cd ./<path to src folder>
+- enter "./buildV1.sh" to generate the .class files
+- now we are ready to give inputs. Uncomment the lines 9, 10 or 11 in "MyMainV1.java" based on the kind of input you intend to give
+    * line 9 -> Integer Input
+    * line 10 -> Double Input
+    * line 11 -> String Input
+- in the terminal, type "./runV1.sh <DataStructure to be used> <input file name>" to run the program
+    0. Hash Table
+    1. Binary Search Tree
+    2. Splay Tree
+    3. Skip List
+    4. Red Black Tree
+
+    Ex: ./runV1.sh 2 input3
+
+    output :
+
+    Ascending order of data:
+    0.7, 7.3, 40.3, 70.0
+    Time taken is : 16.414292 milliseconds
+
+
+Version 2:
+
+This version when executed gives the height of the tree after each operation(insert/delete)
+
+instructions to run Version 2:
+- open the command prompt/terminal.
+- check your present directory using the command "pwd"
+- navigate to "src" folder using cd ./<path to src folder>
+- enter "./buildV2.sh" to generate the .class files
+- now we are ready to give inputs. Uncomment the lines 8, 9 or 10 in "MyMainV2.java" based on the kind of input you intend to give
+    * line 8 -> Integer Input
+    * line 9 -> Double Input
+    * line 10 -> String Input
+- in the terminal, type "./runV2.sh <DataStructure to be used> <input file name>" to run the program
+    1. Binary Search Tree
+    2. Splay Tree
+    4. Red Black Tree
+
+    Ex: ./runV2.sh 1 input4
+
+    output:
+
+    1
+    2
+    3
+    4
+    4
+    4
+
+
+************* Comparison of Data structures based on their execution time
+
+input :
+1   5
+1   4
+1   6
+1   3
+1   5
+0   7
+0   5
+
+output for:
+
+Hash Table:
+Ascending order of data:
+3, 4, 5, 6
+Time taken is : 19.994583 milliseconds
+
+Binary Search Tree:
+Ascending order of data:
+3, 4, 5, 6
+Time taken is : 18.162917 milliseconds
+
+Splay Tree:
+Ascending order of data:
+3, 4, 5, 6
+Time taken is : 18.69275 milliseconds
+
+Skip list:
+Ascending order of data:
+3, 4, 5, 6
+Time taken is : 19.623125 milliseconds
+
+Red Black Tree:
+Ascending order of data:
+3, 4, 5, 6
+Time taken is : 18.37575 milliseconds
+
+**************** Contribution
+Yashwanth:
+- skip list implementation
+- splay tree implementation
+- BST implementation
+- Shell scripts
+
+Chandan:
+- Red Black tree implementation
+- Hash Table implementation
+- README
