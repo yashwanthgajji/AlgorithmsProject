@@ -35,7 +35,7 @@ public class SplayTreeV1<T extends Comparable<T>> implements DataStructureV1<T> 
             return;
         }
         inorder(node.left);
-        System.out.print(node.data+" ");
+        System.out.print(node.data+", ");
         inorder(node.right);
     }
 
