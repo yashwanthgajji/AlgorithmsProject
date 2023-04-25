@@ -230,6 +230,7 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
                     x.parent.color = 1;
                     leftRotate(x.parent);
                     w = x.parent.right;
+                    manageUpperHeight(w);
                 }
                 if (w.left.color == 0 && w.right.color == 0) {
                     w.color = 1;
@@ -240,12 +241,14 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
                         w.color = 1;
                         rightRotate(w);
                         w = x.parent.right;
+                        manageUpperHeight(w);
                     }
                     w.color = x.parent.color;
                     x.parent.color = 0;
                     w.right.color = 0;
                     leftRotate(x.parent);
                     x = root;
+                    manageUpperHeight(x);
                 }
             } else {
                 Node<T> w = x.parent.left;
@@ -254,6 +257,7 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
                     x.parent.color = 1;
                     rightRotate(x.parent);
                     w = x.parent.left;
+                    manageUpperHeight(w);
                 }
                 if (w.right.color == 0 && w.left.color == 0) {
                     w.color = 1;
@@ -264,12 +268,14 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
                         w.color = 1;
                         leftRotate(w);
                         w = x.parent.left;
+                        manageUpperHeight(w);
                     }
                     w.color = x.parent.color;
                     x.parent.color = 0;
                     w.left.color = 0;
                     rightRotate(x.parent);
                     x = root;
+                    manageUpperHeight(x);
                 }
             }
         }
