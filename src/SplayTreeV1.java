@@ -74,24 +74,26 @@ public class SplayTreeV1<T extends Comparable<T>> implements DataStructureV1<T> 
     }
 
     public Node<T> search(T key) {
-        Node<T> node = search(root, key);
-        if (node != null) {
-            splay(node);
-        }
-        return node;
+        return search(root, key);
     }
 
     private Node<T> search(Node<T> node, T key) {
-        if (node == null) {
-            return null;
+        Node<T> p = node;
+        Node<T> q = node;
+        while (p != null) {
+            if (p.data.equals(key)) {
+                splay(p);
+                return p;
+            } else if (p.data.compareTo(key) > 0) {
+                q = p;
+                p = p.left;
+            } else {
+                q = p;
+                p  =p.right;
+            }
         }
-        if (node.data.equals(key)) {
-            return node;
-        }
-        if (node.data.compareTo(key) > 0) {
-            return search(node.left, key);
-        }
-        return search(node.right, key);
+        splay(q);
+        return null;
     }
 
     private void leftRotate(Node<T> p) {
