@@ -158,10 +158,14 @@ public class SplayTreeV1<T extends Comparable<T>> implements DataStructureV1<T> 
         Node<T> rightSubTree = p.right;
         if(leftSubTree == null) {
             root = rightSubTree;
-            rightSubTree.parent = null;
+            if (rightSubTree != null) {
+                rightSubTree.parent = null;
+            }
         } else if(rightSubTree == null) {
             root = leftSubTree;
-            leftSubTree.parent = null;
+            if (leftSubTree != null) {
+                leftSubTree.parent = null;
+            }
         } else {
             leftSubTree.parent = null;
             rightSubTree.parent = null;
