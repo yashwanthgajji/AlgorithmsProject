@@ -167,8 +167,8 @@ public class RedBlackTreeV2<T extends Comparable<T>> implements DataStructureV2<
         } else {
             u.parent.right = v;
         }
-        if (v != null) {
-            v.parent = u.parent;
+        v.parent = u.parent;
+        if (v != nil) {
             manageUpperHeight(v);
         } else {
             manageUpperHeight(u.parent);
